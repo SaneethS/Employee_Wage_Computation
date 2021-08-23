@@ -7,9 +7,10 @@ public class EmployeeWageComputation {
 		
 		final int IS_FULL_TIME=1;
 		final int IS_PART_TIME=2;
+		final int WORKING_DAYS_MONTH=20;
 		int WAGE_PER_HOUR=20;
 		int empHrs=0;
-		int empWage=0;
+		int monthlyWage=0;
 		
 		int empCheck = (int) (Math.floor(Math.random()*10)%3);
 		
@@ -27,17 +28,20 @@ public class EmployeeWageComputation {
 		
 		int dailyWage = empHrs * WAGE_PER_HOUR;
 		System.out.println("Daily Wage of Employee : "+dailyWage);
-		
-		switch(empCheck) {
-		case IS_FULL_TIME: empHrs=8;
+		for(int i=0;i<WORKING_DAYS_MONTH;i++) {
+			switch(empCheck) {
+				case IS_FULL_TIME: empHrs=8;
 							break;
-		case IS_PART_TIME: empHrs=4;
+				case IS_PART_TIME: empHrs=4;
 							break;
-		default: empHrs=0;
+				default: empHrs=0;
 		
+			}
+			int dailyWageSwitch = empHrs * WAGE_PER_HOUR;
+			monthlyWage += dailyWageSwitch;
+			
 		}
-		int dailyWageSwitch = empHrs * WAGE_PER_HOUR;
-		System.out.println("Daily Wage of Employee using Switch: "+dailyWageSwitch);
+		System.out.println("Wage of Employee per Month: "+monthlyWage);
 		
 
 	}
