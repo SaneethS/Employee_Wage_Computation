@@ -2,16 +2,16 @@ package com.employeewage;
 
 public class EmployeeWageComputation {
 	
-	public static final int IS_FULL_TIME=1;
-	public static final int IS_PART_TIME=2;
-	public static final int WORKING_DAYS_MONTH=20;
-	public static final int WORKING_HOURS_MONTH=100;
-	public static final int WAGE_PER_HOUR=20;
-	public static int empHrs=0;
-	public static int monthlyWage=0;
-	public static int totalHrs=0;
-	public static int totalDays=0;
-	public static int empCheck = (int) (Math.floor(Math.random()*10)%3);
+	private static final int IS_FULL_TIME=1;
+	private static final int IS_PART_TIME=2;
+	private static final int WORKING_DAYS_MONTH=20;
+	private static final int WORKING_HOURS_MONTH=100;
+	private static final int WAGE_PER_HOUR=20;
+	private static int empHrs=0;
+	private static int monthlyWage=0;
+	private static int totalHrs=0;
+	private static int totalDays=0;
+	private static int empCheck = (int) (Math.floor(Math.random()*10)%3);
 	
 	public void attendance() {
 		if(empCheck == IS_FULL_TIME) {
