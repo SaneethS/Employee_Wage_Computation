@@ -1,22 +1,19 @@
 package com.employeewage;
 
 public class EmployeeWageComputation {
-
-	public static void main(String[] args) {
-		System.out.println("Welcome to Employee Computation Problem");
-		
-		final int IS_FULL_TIME=1;
-		final int IS_PART_TIME=2;
-		final int WORKING_DAYS_MONTH=20;
-		final int WORKING_HOURS_MONTH=100;
-		int WAGE_PER_HOUR=20;
-		int empHrs=0;
-		int monthlyWage=0;
-		int totalHrs=0;
-		int totalDays=0;
-		
-		int empCheck = (int) (Math.floor(Math.random()*10)%3);
-		
+	
+	public static final int IS_FULL_TIME=1;
+	public static final int IS_PART_TIME=2;
+	public static final int WORKING_DAYS_MONTH=20;
+	public static final int WORKING_HOURS_MONTH=100;
+	public static final int WAGE_PER_HOUR=20;
+	public static int empHrs=0;
+	public static int monthlyWage=0;
+	public static int totalHrs=0;
+	public static int totalDays=0;
+	public static int empCheck = (int) (Math.floor(Math.random()*10)%3);
+	
+	public void attendance() {
 		if(empCheck == IS_FULL_TIME) {
 			System.out.println("Employee is present");
 			empHrs=8;
@@ -28,9 +25,14 @@ public class EmployeeWageComputation {
 			System.out.println("Employee is absent");
 			empHrs=0;
 		}
-		
+	}
+	
+	public void dailyWage() {
 		int dailyWage = empHrs * WAGE_PER_HOUR;
 		System.out.println("Daily Wage of Employee : "+dailyWage);
+	}
+	
+	public void monthlyWage(){
 		for(int i=0;i<WORKING_DAYS_MONTH;i++) {
 			switch(empCheck) {
 				case IS_FULL_TIME: empHrs=8;
@@ -42,10 +44,11 @@ public class EmployeeWageComputation {
 			}
 			int dailyWageSwitch = empHrs * WAGE_PER_HOUR;
 			monthlyWage += dailyWageSwitch;
-			
 		}
 		System.out.println("Wage of Employee per Month: "+monthlyWage);
-		
+	}
+	
+	public void daysHoursWage() {
 		while(totalHrs<WORKING_HOURS_MONTH && totalDays<WORKING_DAYS_MONTH) {
 			totalDays++;
 			switch(empCheck) {
