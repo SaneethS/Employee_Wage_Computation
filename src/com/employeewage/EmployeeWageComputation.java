@@ -5,11 +5,25 @@ public class EmployeeWageComputation {
 	private static final int IS_FULL_TIME=1;
 	private static final int IS_PART_TIME=2;
 	private static int empHrs=0;
-	private static int monthlyWage=0;
+	private String companyName;
+	private int wagePerHour;
+	private int workingDaysPerMonth;
+	private int workingHoursPerMonth;
+	private int totalWage = 0;
 	
 	private static int empCheck = (int) (Math.floor(Math.random()*10)%3);
 	
-	public void attendance() {
+	EmployeeWageComputation(String companyName,int wagePerHour, int workingDaysPerMonth, int workingHoursPerMonth){
+		this.companyName = companyName;
+		this.wagePerHour = wagePerHour;
+		this.workingDaysPerMonth = workingDaysPerMonth;
+		this.workingHoursPerMonth = workingHoursPerMonth;
+		
+	}
+	
+	public void companyWage() {
+		
+		System.out.println("Company Name : "+companyName);
 		if(empCheck == IS_FULL_TIME) {
 			System.out.println("Employee is present");
 			empHrs=8;
@@ -21,12 +35,12 @@ public class EmployeeWageComputation {
 			System.out.println("Employee is absent");
 			empHrs=0;
 		}
-	}
 	
-	public void companyWage(int wagePerHour, int workingDaysPerMonth, int workingHoursPerMonth ) {
-		int dailyWage = empHrs * wagePerHour;
+		int dailyWage = 0;
+		dailyWage = empHrs * wagePerHour;
 		System.out.println("Daily Wage of Employee : "+dailyWage);
 		
+		int monthlyWage = 0;
 		for(int i=0;i<workingDaysPerMonth ;i++) {
 			switch(empCheck) {
 				case IS_FULL_TIME: empHrs=8;
@@ -60,8 +74,8 @@ public class EmployeeWageComputation {
 				
 			}
 			
-			int totalWage = totalHrs * wagePerHour;
-			System.out.println("Total Wage of Employee: "+totalWage);
+			totalWage = totalHrs * wagePerHour;
+			System.out.println("Total Wage of Company: "+totalWage);
 		}
 	}
 }
