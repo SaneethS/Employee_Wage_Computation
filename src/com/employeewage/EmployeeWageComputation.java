@@ -4,26 +4,22 @@ public class EmployeeWageComputation {
 	
 	private static final int IS_FULL_TIME=1;
 	private static final int IS_PART_TIME=2;
-	private static int empHrs=0;
-	private String companyName;
-	private int wagePerHour;
-	private int workingDaysPerMonth;
-	private int workingHoursPerMonth;
-	private int totalWage = 0;
 	
-	private static int empCheck = (int) (Math.floor(Math.random()*10)%3);
+	private int companyCount = 0;
+	private CompEmpWage [] compEmpWageArray;
 	
-	EmployeeWageComputation(String companyName,int wagePerHour, int workingDaysPerMonth, int workingHoursPerMonth){
-		this.companyName = companyName;
-		this.wagePerHour = wagePerHour;
-		this.workingDaysPerMonth = workingDaysPerMonth;
-		this.workingHoursPerMonth = workingHoursPerMonth;
-		
+	public EmployeeWageComputation() {
+		compEmpWageArray = new CompEmpWage[10];
 	}
 	
-	public void companyWage() {
-		
-		System.out.println("Company Name : "+companyName);
+	public void addCompanyWage(String companyName,int wagePerHour, int workingDaysPerMonth, int workingHoursPerMonth) {
+		compEmpWageArray[companyCount] = new CompEmpWage(companyName, wagePerHour, workingDaysPerMonth, workingHoursPerMonth);
+		companyCount++;
+	}
+	
+	public int companyWage(CompEmpWage compEmpWage) {
+		int empHrs = 0;
+		int empCheck = (int) (Math.floor(Math.random()*10)%3);
 		if(empCheck == IS_FULL_TIME) {
 			System.out.println("Employee is present");
 			empHrs=8;
@@ -37,11 +33,11 @@ public class EmployeeWageComputation {
 		}
 	
 		int dailyWage = 0;
-		dailyWage = empHrs * wagePerHour;
+		dailyWage = empHrs * compEmpWage.wagePerHour;
 		System.out.println("Daily Wage of Employee : "+dailyWage);
 		
 		int monthlyWage = 0;
-		for(int i=0;i<workingDaysPerMonth ;i++) {
+		for(int i=0;i<compEmpWage.workingDaysPerMonth ;i++) {
 			switch(empCheck) {
 				case IS_FULL_TIME: empHrs=8;
 							break;
@@ -50,7 +46,7 @@ public class EmployeeWageComputation {
 				default: empHrs=0;
 		
 			}
-			int dailyWageSwitch = empHrs * wagePerHour;
+			int dailyWageSwitch = empHrs * compEmpWage.wagePerHour;
 			monthlyWage += dailyWageSwitch;
 		}
 		System.out.println("Wage of Employee per Month: "+monthlyWage);
@@ -59,7 +55,7 @@ public class EmployeeWageComputation {
 		int totalDays=0;
 		
 		if(!(empHrs == 0)) {
-			while(totalHrs<workingHoursPerMonth && totalDays<workingDaysPerMonth ) {
+			while(totalHrs<compEmpWage.workingHoursPerMonth && totalDays<compEmpWage.workingDaysPerMonth ) {
 				totalDays++;
 				switch(empCheck) {
 				case IS_FULL_TIME: empHrs=8;
@@ -73,9 +69,15 @@ public class EmployeeWageComputation {
 				System.out.println("Day "+totalDays+" Hours:"+totalHrs);
 				
 			}
-			
-			totalWage = totalHrs * wagePerHour;
-			System.out.println("Total Wage of Company: "+totalWage);
+		}
+		return totalHrs * compEmpWage.wagePerHour;
+	}
+	
+	public void computeWage() {
+		for(int i = 0 ; i<companyCount ; i++) {
+			compEmpWageArray[i].setTotalEmpWage(this.companyWage(compEmpWageArray[i]));
+			System.out.println(compEmpWageArray[i]);
 		}
 	}
+	
 }
