@@ -1,20 +1,21 @@
 package com.employeewage;
 
+import java.util.*;
+
 public class EmployeeWageComputation implements Company {
 	
 	private static final int IS_FULL_TIME=1;
 	private static final int IS_PART_TIME=2;
 	
-	private int companyCount = 0;
-	private CompEmpWage [] compEmpWageArray;
+	private List<CompEmpWage> compEmpWageArray;
 	
 	public EmployeeWageComputation() {
-		compEmpWageArray = new CompEmpWage[10];
+		compEmpWageArray = new ArrayList<>();
 	}
 	
 	public void addCompanyWage(String companyName,int wagePerHour, int workingDaysPerMonth, int workingHoursPerMonth) {
-		compEmpWageArray[companyCount] = new CompEmpWage(companyName, wagePerHour, workingDaysPerMonth, workingHoursPerMonth);
-		companyCount++;
+		CompEmpWage company = new CompEmpWage(companyName, wagePerHour, workingDaysPerMonth, workingHoursPerMonth);
+		compEmpWageArray.add(company);
 
 	}
 	
@@ -75,9 +76,10 @@ public class EmployeeWageComputation implements Company {
 	}
 	
 	public void computeWage() {
-		for(int i = 0 ; i<companyCount ; i++) {
-			compEmpWageArray[i].setTotalEmpWage(this.companyWage(compEmpWageArray[i]));
-			System.out.println(compEmpWageArray[i]);
+		for(int i = 0 ; i<compEmpWageArray.size() ; i++) {
+			CompEmpWage company = compEmpWageArray.get(i);
+			company.setTotalEmpWage(this.companyWage(company));
+			System.out.println(company);
 		}
 	}
 	
