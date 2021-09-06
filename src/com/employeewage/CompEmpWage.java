@@ -1,5 +1,7 @@
 package com.employeewage;
 
+import java.util.List;
+
 public class CompEmpWage {
 	
 	public String companyName;

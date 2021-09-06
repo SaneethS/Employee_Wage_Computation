@@ -35,9 +35,6 @@ public class EmployeeWageComputation implements Company {
 		}
 	
 		int dailyWage = 0;
-		dailyWage = empHrs * compEmpWage.wagePerHour;
-		System.out.println("Daily Wage of Employee : "+dailyWage);
-		
 		int monthlyWage = 0;
 		for(int i=0;i<compEmpWage.workingDaysPerMonth ;i++) {
 			switch(empCheck) {
@@ -69,6 +66,8 @@ public class EmployeeWageComputation implements Company {
 				}
 				totalHrs += empHrs;
 				System.out.println("Day "+totalDays+" Hours:"+totalHrs);
+				dailyWage = empHrs * compEmpWage.wagePerHour;
+				System.out.println("Day "+totalDays+" Wage:"+dailyWage);
 				
 			}
 		}
