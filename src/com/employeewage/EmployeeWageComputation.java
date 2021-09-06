@@ -1,6 +1,6 @@
 package com.employeewage;
 
-public class EmployeeWageComputation {
+public class EmployeeWageComputation implements Company {
 	
 	private static final int IS_FULL_TIME=1;
 	private static final int IS_PART_TIME=2;
@@ -15,6 +15,7 @@ public class EmployeeWageComputation {
 	public void addCompanyWage(String companyName,int wagePerHour, int workingDaysPerMonth, int workingHoursPerMonth) {
 		compEmpWageArray[companyCount] = new CompEmpWage(companyName, wagePerHour, workingDaysPerMonth, workingHoursPerMonth);
 		companyCount++;
+
 	}
 	
 	public int companyWage(CompEmpWage compEmpWage) {
