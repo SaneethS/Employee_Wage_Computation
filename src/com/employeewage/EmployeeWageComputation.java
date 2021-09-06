@@ -8,14 +8,18 @@ public class EmployeeWageComputation implements Company {
 	private static final int IS_PART_TIME=2;
 	
 	private List<CompEmpWage> compEmpWageArray;
+	private Map<String,CompEmpWage> map;
 	
 	public EmployeeWageComputation() {
 		compEmpWageArray = new ArrayList<>();
+		map = new HashMap<>();
 	}
 	
+	@Override
 	public void addCompanyWage(String companyName,int wagePerHour, int workingDaysPerMonth, int workingHoursPerMonth) {
 		CompEmpWage company = new CompEmpWage(companyName, wagePerHour, workingDaysPerMonth, workingHoursPerMonth);
 		compEmpWageArray.add(company);
+		map.put(companyName, company);
 
 	}
 	
@@ -74,12 +78,23 @@ public class EmployeeWageComputation implements Company {
 		return totalHrs * compEmpWage.wagePerHour;
 	}
 	
+	@Override
 	public void computeWage() {
 		for(int i = 0 ; i<compEmpWageArray.size() ; i++) {
 			CompEmpWage company = compEmpWageArray.get(i);
 			company.setTotalEmpWage(this.companyWage(company));
 			System.out.println(company);
 		}
+	}
+	
+	@Override
+	public int getCompanyTotalWage(String companyName) {
+		try {
+			return map.get(companyName).totalEmpWage;
+		}catch(NullPointerException e) {
+			System.out.println("The company with name "+companyName+" Not found");
+		}
+		return 0;
 	}
 	
 }
